@@ -17458,20 +17458,7 @@ label {
   background-clip: unset;
 }
 
-/* -------------------------------------------------------------------------- */
-/*                                    Text                                    */
-/* -------------------------------------------------------------------------- */
-.text-smallcaps {
-  font-variant: small-caps;
-}
 
-.text-superscript {
-  vertical-align: super;
-}
-
-.text-word-break {
-  word-break: break-word;
-}
 
 /*-----------------------------------------------
 |   Font family
@@ -17484,18 +17471,6 @@ label {
   font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-/*-----------------------------------------------
-|   Error Page
------------------------------------------------*/
-.fs-error {
-  font-size: 7rem;
-}
-
-@media (min-width: 576px) {
-  .fs-error {
-    font-size: 10rem;
-  }
-}
 
 /*-----------------------------------------------
 |   Text alignment
@@ -17506,72 +17481,6 @@ label {
 
 .shape-up {
   margin-top: -21rem;
-}
-
-/*-----------------------------------------------
-|   Backgrounds
------------------------------------------------*/
-.bg-holder {
-  position: absolute;
-  width: 100%;
-  min-height: 100%;
-  top: 0;
-  left: 0;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-  will-change: transform, opacity, filter;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  background-repeat: no-repeat;
-  z-index: 0;
-}
-
-.bg-holder.bg-right {
-  left: auto;
-  right: 0;
-}
-
-.bg-holder.overlay:before {
-  position: absolute;
-  content: "";
-  background: rgba(0, 0, 0, 0.25);
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.bg-holder.overlay-0:before {
-  background: rgba(0, 0, 0, 0.7);
-}
-
-.bg-holder.overlay-1:before {
-  background: rgba(0, 0, 0, 0.55);
-}
-
-.bg-holder.overlay-2:before {
-  background: rgba(0, 0, 0, 0.4);
-}
-
-.bg-holder .bg-video {
-  position: absolute;
-  display: block;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  -o-object-fit: cover;
-  object-fit: cover;
-  height: 100%;
-  min-width: 100%;
-}
-
-.bg-holder .bg-youtube {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -17648,115 +17557,6 @@ label {
   align-items: center;
 }
 
-.flex-1 {
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-
-.link-black {
-  color: #000 !important;
-}
-
-.link-black:hover, .link-black:focus {
-  color: black !important;
-}
-
-.link-100 {
-  color: #F6F6F6 !important;
-}
-
-.link-100:hover, .link-100:focus {
-  color: #d0d0d0 !important;
-}
-
-.link-200 {
-  color: #F8F8F8 !important;
-}
-
-.link-200:hover, .link-200:focus {
-  color: #d2d2d2 !important;
-}
-
-.link-300 {
-  color: #bec3d0 !important;
-}
-
-.link-300:hover, .link-300:focus {
-  color: #929ab0 !important;
-}
-
-.link-400 {
-  color: #7a839e !important;
-}
-
-.link-400:hover, .link-400:focus {
-  color: #565e76 !important;
-}
-
-.link-500 {
-  color: #6f7995 !important;
-}
-
-.link-500:hover, .link-500:focus {
-  color: #4e556a !important;
-}
-
-.link-600 {
-  color: #4d5469 !important;
-}
-
-.link-600:hover, .link-600:focus {
-  color: #2d313d !important;
-}
-
-.link-700 {
-  color: #4d5769 !important;
-}
-
-.link-700:hover, .link-700:focus {
-  color: #2d323d !important;
-}
-
-.link-800 {
-  color: #4d5969 !important;
-}
-
-.link-800:hover, .link-800:focus {
-  color: #2d343d !important;
-}
-
-.link-900 {
-  color: #4F5665 !important;
-}
-
-.link-900:hover, .link-900:focus {
-  color: #2d313a !important;
-}
-
-.link-1000 {
-  color: #0B132A !important;
-}
-
-.link-1000:hover, .link-1000:focus {
-  color: black !important;
-}
-
-.link-1100 {
-  color: #0b1727 !important;
-}
-
-.link-1100:hover, .link-1100:focus {
-  color: black !important;
-}
-
-.link-white {
-  color: #fff !important;
-}
-
-.link-white:hover, .link-white:focus {
-  color: #d9d9d9 !important;
-}
 
 .shadow-transition {
   -webkit-box-shadow: 0 25px 45px rgba(79, 86, 101, 0.075);
@@ -17768,222 +17568,10 @@ label {
   transition: box-shadow 0.4s ease, -webkit-box-shadow 0.4s ease;
 }
 
-/*-----------------------------------------------
-|   Icons group
------------------------------------------------*/
-.icon-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
 
-.icon-group .icon-item:not(:last-child) {
-  margin-right: 0.5rem;
-}
-
-.icon-item {
-  border-radius: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #4d5769;
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  height: 2.5rem;
-  width: 2.5rem;
-  border: 0;
-  font-size: 0.875rem;
-  -webkit-box-shadow: 0 1.5625rem 2.8125rem rgba(79, 86, 101, 0.075);
-  box-shadow: 0 1.5625rem 2.8125rem rgba(79, 86, 101, 0.075);
-}
-
-.icon-item:hover, .icon-item:focus {
-  background-color: #F8F8F8;
-}
-
-.icon-item.icon-item-sm {
-  height: 1.875rem;
-  width: 1.875rem;
-}
-
-.icon-item.icon-item-lg {
-  height: 2.75rem;
-  width: 2.75rem;
-}
-
-.fontawesome-i2svg-active .icon-indicator {
-  opacity: 1;
-}
 
 /*-----------------------------------------------
-|   Object fit and Z-index
------------------------------------------------*/
-.fit-cover {
-  -o-object-fit: cover;
-  object-fit: cover;
-}
-
-.z-index-1 {
-  z-index: 1;
-}
-
-.z-index-2 {
-  z-index: 2 !important;
-}
-
-.z-index--1 {
-  z-index: -1;
-}
-
-/*-----------------------------------------------
-|   Sidebar
------------------------------------------------*/
-.sticky-sidebar {
-  position: -webkit-sticky;
-  position: sticky;
-  z-index: 1020;
-  top: 5.3125rem;
-}
-
-/*-----------------------------------------------
-|   Custom circle
------------------------------------------------*/
-.circle-dashed {
-  border: 1px dashed #387BF5;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  border-radius: 50%;
-  width: 3.5rem;
-  height: 3.5rem;
-}
-
-/*-----------------------------------------------
-|   Miscellaneous
------------------------------------------------*/
-.hover-text-decoration-none:hover, .hover-text-decoration-none:focus {
-  text-decoration: none;
-}
-
-.resize-none {
-  resize: none;
-}
-
-.collapsed .collapse-icon {
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  -webkit-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  transform: rotate(0deg);
-}
-
-.collapse-icon {
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  -webkit-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-}
-
-[data-dismiss="dropdown"] *,
-[data-offset-top] *,
-[data-toggle="collapse"] *,
-[data-toggle="tooltip"] *,
-[data-toggle="popover"] * {
-  pointer-events: none;
-}
-
-/*-----------------------------------------------
-|   Outline
------------------------------------------------*/
-.outline-none {
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-.outline-none:hover, .outline-none:focus {
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-/*-----------------------------------------------
-|   Vertical Line (used in kanban header)
------------------------------------------------*/
-.vertical-line:after {
-  position: absolute;
-  content: "";
-  height: 75%;
-  width: 1px;
-  background: #bec3d0;
-  right: 0;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
-.vertical-line.vertical-line-400:after {
-  background-color: #7a839e;
-}
-
-/* -------------------------------------------------------------------------- */
-/*                                 Transition                                 */
-/* -------------------------------------------------------------------------- */
-.transition-base {
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
-
-.transition-none {
-  -webkit-transition: none;
-  -o-transition: none;
-  transition: none;
-}
-
-.fsp-75 {
-  font-size: 75%;
-}
-
-/* -------------------------------------------------------------------------- */
-/*                                    Width                                   */
-/* -------------------------------------------------------------------------- */
-.min-w-0 {
-  min-width: 0;
-}
-
-/* -------------------------------------------------------------------------- */
-/*                                Terms sidebar                               */
-/* -------------------------------------------------------------------------- */
-.terms-sidebar .nav-link {
-  color: #6f7995;
-  font-weight: 500;
-  font-family: "Rubik", "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-.terms-sidebar .nav-link.active {
-  color: #387BF5;
-}
-
-/*-----------------------------------------------
-|   LaslesVPN glow buttons
+|   Get Started glow buttons
 -----------------------------------------------*/
 .btn-glow {
   position: relative;
@@ -18029,25 +17617,7 @@ label {
   box-shadow: 0.5rem 0.5rem 1.5rem rgba(22, 28, 45, 0.1) !important;
 }
 
-/* -------------------------------------------------------------------------- */
-/*                                    Badge                                   */
-/* -------------------------------------------------------------------------- */
-.badge {
-  line-height: 0.8125rem;
-}
 
-.badge-circle {
-  height: 2rem;
-  width: 2rem;
-  border-radius: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 0 0.5rem;
-}
 
 @media (min-width: 768px) {
   .badge-circle {
@@ -18064,29 +17634,7 @@ label {
   }
 }
 
-.carousel-control-prev,
-.carousel-control-next {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  width: 15%;
-  color: #F53838;
-  text-align: center;
-  opacity: 0.9;
-  -webkit-transition: opacity 0.15s ease;
-  -o-transition: opacity 0.15s ease;
-  transition: opacity 0.15s ease;
-}
+
 
 @media (prefers-reduced-motion: reduce) {
   .carousel-control-prev,
@@ -18096,63 +17644,3 @@ label {
     transition: none;
   }
 }
-
-.carousel-control-prev:hover, .carousel-control-prev:focus,
-.carousel-control-next:hover,
-.carousel-control-next:focus {
-  color: #F53838;
-  text-decoration: none;
-  outline: 0;
-  opacity: 0.9;
-}
-
-.carousel-control-prev {
-  left: 0;
-}
-
-.carousel-control-next {
-  right: 0;
-}
-
-.carousel-indicators {
-  position: static;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: start;
-  margin: 0;
-}
-
-.carousel-indicators li {
-  border-radius: 50%;
-}
-
-.carousel-indicators .active {
-  opacity: 1;
-  width: 40px;
-  border-radius: 10px;
-}
-
-.carousel-control-prev {
-  left: auto;
-  right: 45px;
-}
-
-.subscribe {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  background: #fff;
-}
-
-/*-----------------------------------------------
-|   User Styles
------------------------------------------------*/
-
-/*# sourceMappingURL=theme.css.map */
