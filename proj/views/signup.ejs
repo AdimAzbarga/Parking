@@ -24,19 +24,26 @@
                         <form method="POST" class="register-form" id="register-form">
                             <div class="form-group">
                                 <label for="name"><i class=""></i></label>
-                                <input type="text" name="userName" id="name" placeholder="Username"/>
+                                <input type="text" name="username" id="name" placeholder="Username"/>
                             </div>
                             <div class="form-group">
                                 <label for="email"><i class="fa-solid fa-envelopes"></i></label>
                                 <input type="email" name="email" id="email" placeholder="Email"/>
                             </div>
                             <div class="form-group">
+                                <label for="email"><i class="fa-solid fa-envelopes"></i></label>
+                                <input type="number" name="phone" id="email" placeholder="Phone"/>
+                            </div>
+                            <div class="form-group">
                                 <label for="pass"><i class="zmdi zmdi-lock"></i></label>
                                 <input type="password" name="password" id="pass" placeholder="Password"/>
                             </div>
                             <div class="form-group">
-                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                              <input type="checkbox" name="isOwner" class="agree-term" onclick="onlyOne(this)" >
+                              <label for="agree-term" class="label-agree-term"><span><span></span></span>Is Owner </label>
+                              <br>
+                              <input type="checkbox" name="isCustomer" class="agree-term" onclick="onlyOne(this)">
+                              <label for="agree-term" class="label-agree-term"><span><span></span></span>Is Customer </label>
                             </div>
                             <div class="form-group form-button">
                                 <input type="submit" name="signup" id="signup" class=" btn btn-outline-success form-submit" value="Register"/>
