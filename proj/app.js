@@ -10,8 +10,10 @@ const ejs = require("ejs");
 const mongoose = require('mongoose');
 var passport = require("passport");
 const bcrypt = require("bcrypt");
-const flash = require("express-flash");
+//const flash = require("express-flash");
+const flash = require("connect-flash");
 const session = require("express-session");
+var passwordValidator = require('password-validator');
 
 
 
@@ -64,37 +66,41 @@ const usersSchema = {
   phone: String,
   isOwner: String,
   isCustomer: String,
-//  isAdmin:String
+  isAdmin: String
 };
 
-// const adminUser = new User({
-//   userName: "ADMIN",
-//   email: "adeem2azbarga@gmail.com",
-//   password: "admin123",
-//   phone: "050221133",
-//   isOwner: "off",
-//   isCustomer: "off",
-//   isAdmin:"on"
-// })
-//
-// const defultUser = adminUser;
-//
-// User.InsertOne(defultUser,function(err){
-//   if(err){
-//     console.log(err);
-//   }
-//   else{
-//     console.log("saved successfully");
-//   }
-// })
-
 const User = mongoose.model("User", usersSchema);
-//
-// const initializePassport = require("./passport-config");
-// initializePassport(passport ,
-//    email => User.find( user = User.email === email ),
-//    id => User.find( user = User.id === id )
-// );
+
+
+var passwordschema = new passwordValidator();
+var phoneschema = new passwordValidator();
+var usernameschema = new passwordValidator();
+
+// Add properties to it
+passwordschema
+  .is().max(15) // Maximum length 25
+  .has().uppercase() // Must have uppercase letters
+  .has().digits(2) // Must have at least 2 digits
+// Validate against a password string
+
+phoneschema
+  .is().min(10)
+  .has().digits(10) // Minimum length 10
+
+
+usernameschema
+  .is().min(8) // Minimum length 10
+  .is().max(15) // Maximum length 25
+  .has().not().spaces() // Should not have spaces
+  .has().lowercase() // Must have lowercase letters
+
+
+
+
+
+
+
+
 
 
 
@@ -116,53 +122,74 @@ app.get("/compose", function(req, res) {
 });
 
 app.get("/signup", function(req, res) {
-  res.render("signup");
+  res.render("signup", {
+    message: req.flash("message")
+  });
 });
 
 
 app.post('/signup', checkNotAuthenticated, async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    let user = new User({
+    let users = new User({
       userName: req.body.username,
       email: req.body.email,
       password: req.body.password,
       phone: req.body.phone,
       isOwner: req.body.isOwner,
       isCustomer: req.body.isCustomer,
+
     });
-    user.save(function(err) {
-      if (!err) {
-        res.redirect("/login");
+    User.findOne({
+      userName: req.body.username,
+
+    }, function(err, user) {
+      if (err) {
+        res.json({
+          error: err
+        })
+      }
+      if (!user) {
+        if (passwordschema.validate(req.body.password)) {
+          if (usernameschema.validate(req.body.username)) {
+            if (phoneschema.validate(req.body.phone)) {
+              users.save(function(err) {
+                if (!err) {
+                  res.redirect("/login");
+                }
+              });
+            } else {
+              req.flash("message", "The phone should have a length of 10 digits of numbers");
+              res.redirect("/signup");
+            }
+          } else {
+            req.flash("message", "The username should have a  Min length 8 and max 10 , no space , lowcase");
+            res.redirect("/signup");
+          }
+
+        } else {
+          req.flash("message", "the password should have a max length of 15 characters, min of 1 uppercase letter and minimum of 2 digits");
+          res.redirect("/signup");
+        };
+
+      } else {
+        req.flash("message", "the user is already exist!");
+        res.redirect("/signup");
       }
     });
+
+
   } catch {
     res.redirect('/signup')
   }
 });
 
-//
-// app.post("/signup", function(req, res){
-//   const user = new User({
-//     userName: req.body.username,
-//     email: req.body.email,
-//     password:req.body.password,
-//     isOwner: req.body.isOwner,
-//     isCustomer:req.body.isCustomer,
-//
-//   });
-//
-//
-//   user.save(function(err){
-//     if (!err){
-//         res.redirect("/login");
-//     }
-//
-//   });
-// });
+
 
 app.get("/login", function(req, res) {
-  res.render("login");
+  res.render("login", {
+    message: req.flash("message")
+  });
 });
 
 app.get("/ownerPage", function(req, res) {
@@ -174,6 +201,9 @@ app.get("/customerPage", function(req, res) {
   res.render("customerPage");
 });
 
+app.get("/adminPage", function(req, res) {
+  res.render("adminPage");
+});
 
 
 
@@ -181,7 +211,6 @@ app.post('/login', function(req, res) {
   const password = req.body.password;
   User.findOne({
     userName: req.body.username,
-    password: password
 
   }, function(err, user) {
     if (err) {
@@ -190,18 +219,24 @@ app.post('/login', function(req, res) {
       })
     }
     if (user) {
-      if(user.isOwner === "on"){
-        res.redirect("/ownerPage");
-      }
-      if(user.isCustomer === "on"){
-        res.redirect("/customerPage");
-      }
+      console.log(req.body.password);
+      console.log(user.password);
+      if (req.body.password === user.password) {
 
-    }
-    else {
-      res.json({
-        message :" user not found"
-      })
+        if (user.isOwner === "on") {
+          res.redirect("/ownerPage");
+        } else if (user.isAdmin === "on") {
+          res.redirect("/home");
+        } else {
+          res.redirect("/customerPage");
+        }
+      } else {
+        req.flash("message", "paswword not match!");
+        res.redirect("/login");
+      }
+    } else {
+      req.flash("message", "user not found !");
+      res.redirect("/login");
     }
   });
 });
