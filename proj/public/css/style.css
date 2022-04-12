@@ -13,7 +13,7 @@ list-type-ulli, .socials {
 
 .alert-danger {
   display: inline-block;
-  border-radius: 25px;
+  border-radius: 10px;
   background-image: -webkit-linear-gradient(top, #f0f0f00%, #f0f0f0 100%) !important;
   background-image: -o-linear-gradient(top, #f0f0f0 0%, #f0f0f0 100%) !important;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#f2dede), to(#e7c3c3)) !important;
