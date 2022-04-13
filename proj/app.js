@@ -51,7 +51,7 @@ const parkingSchema = {
   price: String
 };
 const Parking = mongoose.model("Parking", parkingSchema);
-console.log(Parking);
+
 
 //users models
 
