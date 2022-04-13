@@ -1,0 +1,45 @@
+<%- include("partials/adminH"); -%>
+<div class="box" id="heading">
+  <h1> shared Parkings <style media="screen">
+      h1 {
+        color: #F7F7F7;
+      }
+      h5 {
+        color  :#D82148;
+      }
+    </style>
+  </h1>
+</div>
+
+<div class="box">
+
+
+  <% posts.forEach(function(post) {%>
+  <form class="" action="" method="post">
+    <div class="item">
+      <input type="checkbox" name="checkbox" value="" onChange="">
+      <p>
+      <h4>title :<h5><%= post.title %> </h5>&nbsp;&nbsp;&nbsp;</h4>
+      <h4>address :<h5><%= post.address %> </h5>&nbsp;&nbsp;&nbsp;</h4>
+      <h4>type :<h5><%= post.type %> </h5>&nbsp;&nbsp;&nbsp;</h4>
+      <h4>status :<h5><%= post.status %> </h5>&nbsp;&nbsp;&nbsp;</h4>
+      <h4>price :<h5><%= post.price %> </h5>&nbsp;&nbsp;&nbsp;</h4>
+
+      </p>
+    </div>
+    <% })%>
+  </form>
+
+
+
+
+  <form class="item padding" action="/" method="post">
+    <p>
+      <button type="submit" name="list">✎</button>
+          <button type="submit" name="list">🗑️</button>
+      </p>
+
+
+  </form>
+</div>
+<%- include("partials/footer"); -%>

@@ -38,12 +38,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 
-
-// parking datatbase
-mongoose.connect("mongodb://localhost:27017/parkingDB", {
+mongoose.connect("mongodb://localhost:27017/UserDB", {
   useNewUrlParser: true
 });
 
+//parking model
 const parkingSchema = {
   title: String,
   address: String,
@@ -51,13 +50,10 @@ const parkingSchema = {
   status: String,
   price: String
 };
+const Parking = mongoose.model("Parking", parkingSchema);
+console.log(Parking);
 
-const Post = mongoose.model("Post", parkingSchema);
-
-//user database
-mongoose.connect("mongodb://localhost:27017/UserDB", {
-  useNewUrlParser: true
-});
+//users models
 
 const usersSchema = {
   userName: String,
@@ -108,12 +104,23 @@ app.get("/", function(req, res) {
   res.render("homepage");
 });
 
-app.get("/home", function(req, res) {
+app.get("/parkings", function(req, res) {
 
-  Post.find({}, function(err, posts) {
-    res.render("home", {
+  Parking.find({}, function(err, posts) {
+    res.render("parkings", {
       posts: posts
     });
+
+  });
+});
+
+app.get("/ownerPage", function(req, res) {
+
+  Parking.find({}, function(err, posts) {
+    res.render("ownerPage", {
+      posts: posts
+    });
+
   });
 });
 
@@ -205,6 +212,20 @@ app.get("/adminPage", function(req, res) {
   res.render("adminPage");
 });
 
+app.get('/users', function(req, res) {
+  User.find({}, function(err, foundUser ){
+    res.render("users" , {users : foundUser});
+
+  });
+});
+
+
+// app.get('/parkings', function(req, res) {
+//   Post.find({}, function(err, foundParking ){
+//     res.render("parkings" , {parkings : foundParking});
+//     console.log(foundParking);
+//   });
+// });
 
 
 app.post('/login', function(req, res) {
@@ -219,14 +240,12 @@ app.post('/login', function(req, res) {
       })
     }
     if (user) {
-      console.log(req.body.password);
-      console.log(user.password);
       if (req.body.password === user.password) {
 
         if (user.isOwner === "on") {
           res.redirect("/ownerPage");
         } else if (user.isAdmin === "on") {
-          res.redirect("/home");
+          res.redirect("/adminPage");
         } else {
           res.redirect("/customerPage");
         }
@@ -243,7 +262,7 @@ app.post('/login', function(req, res) {
 
 
 app.post("/compose", function(req, res) {
-  const post = new Post({
+  let post = new Parking({
     title: req.body.postTitle,
     address: req.body.postAddress,
     type: req.body.postType,
@@ -254,7 +273,7 @@ app.post("/compose", function(req, res) {
 
   post.save(function(err) {
     if (!err) {
-      res.redirect("/");
+      res.redirect("ownerPage");
     }
   });
 });
@@ -263,7 +282,7 @@ app.get("/posts/:postId", function(req, res) {
 
   const requestedPostId = req.params.postId;
 
-  Post.findOne({
+  Parking.findOne({
     _id: requestedPostId
   }, function(err, post) {
     res.render("post", {
@@ -298,6 +317,9 @@ function checkNotAuthenticated(req, res, next) {
   }
   next()
 }
+
+
+
 app.listen(3000, function() {
   console.log("Server started on port 3000");
 });

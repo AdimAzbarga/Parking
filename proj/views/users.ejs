@@ -1,0 +1,45 @@
+<%- include("partials/adminH"); -%>
+<div class="box" id="heading">
+  <h1> Users <style media="screen">
+      h1 {
+        color: #F7F7F7;
+      }
+      h5 {
+        color  :#D82148;
+      }
+    </style>
+  </h1>
+</div>
+
+<div class="box">
+
+
+
+
+  <% users.forEach(function(user) {%>
+  <form class="" action="" method="post">
+    <div class="item">
+      <input type="checkbox" name="checkbox" value="" onChange="">
+      <p>
+      <h4>username :<h5><%= user.userName %> </h5>&nbsp;&nbsp;&nbsp;</h4>
+      <h4>email :<h5><%= user.email %> </h5>&nbsp;&nbsp;&nbsp;</h4>
+      <h4>phone :<h5><%= user.phone %> </h5>&nbsp;&nbsp;&nbsp;</h4>
+      <h4>password :<h5><%= user.password %> </h5>&nbsp;&nbsp;&nbsp;</h4>
+
+      </p>
+    </div>
+    <% })%>
+  </form>
+
+
+
+
+  <form class="item" action="/" method="post">
+    <p>
+      <button type="submit" name="list">+</button>
+          <button classtype="submit" name="list">🗑️</button>
+      </p>
+
+  </form>
+</div>
+<%- include("partials/footer"); -%>
