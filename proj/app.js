@@ -278,6 +278,18 @@ app.post("/compose", function(req, res) {
   });
 });
 
+app.post("/delete" , function(req, res){
+  const deleted = req.body.deleting;
+  console.log(deleted);
+  User.findByIdAndRemove(deleted , function(err){
+    if(!err){
+      console.log("successfuly deleting cheked Item");
+    }
+  });
+   res.redirect("users");
+});
+
+
 app.get("/posts/:postId", function(req, res) {
 
   const requestedPostId = req.params.postId;
