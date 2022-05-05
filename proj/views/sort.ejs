@@ -1,18 +1,50 @@
 <%- include("partials/customerHeader"); -%>
-
 <link rel="stylesheet" href="/css/custyle.css">
+<table>
+  <tr>
+    <form class="" action="/available" method="post">
+      <button class="button4 button" type="submit" name="available"><span>Available</span></button>
+    </form>
+  </tr>
 
-<% result.forEach(function(r) {%>
+  <tr>
+    <form class="" action="/unavailable" method="post">
+      <button class="button4 button" type="submit" name="unavailable">Unavailable</button>
+    </form>
+  </tr>
+
+  <tr>
+    <form class="" action="/regular" method="post">
+      <button class="button4 button" type="submit" name="regular">Regular</button>
+    </form>
+  </tr>
+
+  <tr>
+    <form class="" action="/disabled" method="post">
+      <button class="button4 button" type="submit" name="disabled">Disabled</button>
+    </form>
+  </tr>
+</table>
+
+
+
+
+
+<form class="" action="/map" method="post">
+  <% result.forEach(function(r) {%>
   <div class="box red">
-    <h2><%= r.title%></h2>
-    <p>  <p> address = <%= r.address%></p>
+    <h2><%=r.status%></h2>
+    <h3><%= r.title%></h3>
+    <h4> <%= r.description%></h4><br>
+    <h4> <%= r.address%></h4><br>
+    <h4> <%= r.type%></h4><br>
+    <h4> <%= r.price%> per HOUR</h4>
     <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
   </div>
-
   <%})%>
 
 
-
+</form>
 
 
 

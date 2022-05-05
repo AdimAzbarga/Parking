@@ -12,10 +12,6 @@
 }
 
 
-
-
-
-
 h1:first-of-type {
     font-weight: var(--weight1);
     color: var(--varyDarkBlue);
@@ -32,8 +28,9 @@ h1:last-of-type {
     }
 }
 
-.box p {
+.box h4 {
     color: var(--grayishBlue);
+    display: inline-block;
 }
 
 .box {
@@ -76,14 +73,15 @@ img {
 }
 
 h2 {
-    color: var(--varyDarkBlue);
+    color:hsl(0deg 5% 93%);
     font-weight: var(--weight3);
+    text-shadow: 2px 2px 4px #a5716f;
 }
 
 
 @media (min-width: 950px) {
     .row1-container {
-        display: flex;
+        display: block;
         justify-content: center;
         align-items: center;
     }
@@ -98,7 +96,7 @@ h2 {
         top: 150px;
     }
     .box {
-        width: auto;
+        width: 50%;
 
     }
     .header p {

@@ -111,13 +111,45 @@ app.get("/sort", function(req ,res){
 });
 
 app.post("/map", function(req, res) {
-  const result = Parking.find({address: req.body.place}, function(err, posts){
+    Parking.find({address: req.body.place}, function(err, posts){
     res.render("sort" ,
     { result : posts
     });
   })
 });
 
+
+app.post("/available" , function(req , res){
+   Parking.find({status : "Available"}, function(err , posts){
+    res.render("sort", {
+      result : posts
+    });
+  });
+});
+
+app.post("/unavailable" , function(req , res){
+   Parking.find({status : "Unavailable" }, function(err , posts){
+    res.render("sort", {
+      result : posts
+    });
+  });
+});
+
+app.post("/regular" , function(req , res){
+   Parking.find({status : "Regular" }, function(err , posts){
+    res.render("sort", {
+      result : posts
+    });
+  });
+});
+
+app.post("/disabled" , function(req , res){
+   Parking.find({type : "Disabled" }, function(err , posts){
+    res.render("sort", {
+      result : posts
+    });
+  });
+});
 
 
 app.get("/", function(req, res) {

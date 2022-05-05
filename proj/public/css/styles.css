@@ -113,8 +113,8 @@ form.item {
 
 button {
   min-height: 50px;
-  width: 50px;
-  border-radius: 50%;
+  width: auto;
+  border-radius: 30%;
   border-color: transparent;
   background-color: #777777;
   color: #fff;
@@ -122,6 +122,60 @@ button {
   padding-bottom: auto;
   border-width: 0;
 }
+
+.button {
+  border: none;
+  color: white;
+  padding: 3px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 15px 4px 20px 4px ;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+
+.button4 {
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+}
+
+.button4:hover {background-color: #a5716f;}
+/* button {
+  margin:10px;
+  font-family: inherit;
+
+
+}
+/* End of Page styling */
+
+/* Simple button styling -- No animation */
+/* .simple {
+  font-size: 20px;
+  font-weight: 200;
+  text-align: center;
+  letter-spacing: 1px;
+  padding: 13px 50px 13px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+} */
+/*
+.simple::after {
+  content: "";
+  background-color: #a5716f;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+} */ */
 
 .padding {
   padding-right: 20px;
