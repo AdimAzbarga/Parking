@@ -1,12 +1,21 @@
 
 <%- include("partials/header"); -%>
 
+<style media="screen">
+  h1 {
+    color: #555;
+  }
 
+  h3{
+    color: #a5716f;
+  }
+</style>
     <h1><%=title%></h1>
-    <p>Parking's Adress:<%=address%></p>
-    <p>Parking's Type :<%=type%></p>
-    <p>Parking's Status :<%=status%></p>
-    <p>Parking's Price<%=price%></p>
+    <p> <h1>Parking's Description : </h1> <h3><%=description%></p></h3>
+    <p><h1>Parking's Adress :</h1> <h3><%=address%></p></h3>
+    <p><h1>Parking's Type :</h1> <h3><%=type%></p></h3>
+    <p> <h1>Parking's Status :</h1>  <h3><%=status%></p></h3>
+    <p><h1> Parking's Price :</h1> <h3><%=price%>₪ per Hour</p></h3>
 
 
 

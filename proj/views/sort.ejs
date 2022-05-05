@@ -1,0 +1,23 @@
+<%- include("partials/customerHeader"); -%>
+
+<link rel="stylesheet" href="/css/custyle.css">
+
+<% result.forEach(function(r) {%>
+  <div class="box red">
+    <h2><%= r.title%></h2>
+    <p>  <p> address = <%= r.address%></p>
+    <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
+  </div>
+
+  <%})%>
+
+
+
+
+
+
+
+
+
+
+<%- include("partials/footer"); -%>

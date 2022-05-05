@@ -17,6 +17,7 @@
     "express": "^4.16.3",
     "express-flash": "^0.0.2",
     "express-session": "^1.17.2",
+    "gamma": "^1.0.0",
     "lodash": "^4.17.11",
     "mongoose": "^5.3.6",
     "mongoose-int32": "^0.6.0",

@@ -1,4 +1,4 @@
-//jshint esversion:6
+ //jshint esversion:6
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -14,9 +14,9 @@ const bcrypt = require("bcrypt");
 const flash = require("connect-flash");
 const session = require("express-session");
 var passwordValidator = require('password-validator');
-
-
-
+//var foo = require('./foo.js');
+//var bar = require('../lib/bar.js');
+//var gamma = require('gamma');
 
 const aboutContent = "Find Parking ..";
 
@@ -44,7 +44,12 @@ mongoose.connect("mongodb://localhost:27017/UserDB", {
 
 //parking model
 const parkingSchema = {
-  title: String,
+  title: {
+    type: String,
+      //required: [false, "Please enter a Title."],
+      unique: true
+  },
+  description : String,
   address: String,
   type: String,
   status: String,
@@ -94,11 +99,24 @@ usernameschema
 
 
 
+app.get("/map", function(req, res) {
+  res.render("map");
+
+});
 
 
+app.get("/sort", function(req ,res){
+  res.render("sort");
 
+});
 
-
+app.post("/map", function(req, res) {
+  const result = Parking.find({address: req.body.place}, function(err, posts){
+    res.render("sort" ,
+    { result : posts
+    });
+  })
+});
 
 
 
@@ -133,6 +151,40 @@ app.get("/compose", function(req, res) {
 app.get("/signup", function(req, res) {
   res.render("signup", {
     message: req.flash("message")
+  });
+});
+
+
+
+app.post('/login', function(req, res) {
+  const password = req.body.password;
+  User.findOne({
+    userName: req.body.username,
+
+  }, function(err, user) {
+    if (err) {
+      res.json({
+        error: err
+      })
+    }
+    if (user) {
+      if (req.body.password === user.password) {
+
+        if (user.isOwner === "on") {
+          res.redirect("/ownerPage");
+        } else if (user.isAdmin === "on") {
+          res.redirect("/adminPage");
+        } else {
+          res.redirect("/customerPage");
+        }
+      } else {
+        req.flash("message", "paswword not match!");
+        res.redirect("/login");
+      }
+    } else {
+      req.flash("message", "user not found !");
+      res.redirect("/login");
+    }
   });
 });
 
@@ -210,63 +262,29 @@ app.get("/customerPage", function(req, res) {
   res.render("customerPage");
 });
 
+
 app.get("/adminPage", function(req, res) {
   res.render("adminPage");
 });
 
+
 app.get('/users', function(req, res) {
-  User.find({}, function(err, foundUser ){
-    res.render("users" , {users : foundUser});
+  User.find({}, function(err, foundUser) {
+    res.render("users", {
+      users: foundUser
+    });
 
   });
 });
 
-
-// app.get('/parkings', function(req, res) {
-//   Post.find({}, function(err, foundParking ){
-//     res.render("parkings" , {parkings : foundParking});
-//     console.log(foundParking);
-//   });
-// });
-
-
-app.post('/login', function(req, res) {
-  const password = req.body.password;
-  User.findOne({
-    userName: req.body.username,
-
-  }, function(err, user) {
-    if (err) {
-      res.json({
-        error: err
-      })
-    }
-    if (user) {
-      if (req.body.password === user.password) {
-
-        if (user.isOwner === "on") {
-          res.redirect("/ownerPage");
-        } else if (user.isAdmin === "on") {
-          res.redirect("/adminPage");
-        } else {
-          res.redirect("/customerPage");
-        }
-      } else {
-        req.flash("message", "paswword not match!");
-        res.redirect("/login");
-      }
-    } else {
-      req.flash("message", "user not found !");
-      res.redirect("/login");
-    }
-  });
-});
 
 
 app.post("/compose", function(req, res) {
   let post = new Parking({
+
     title: req.body.postTitle,
-    address: req.body.postAddress,
+    description : req.body.postDescription,
+    address: req.body.place,
     type: req.body.postType,
     status: req.body.postStatus,
     price: req.body.postPrice
@@ -280,15 +298,15 @@ app.post("/compose", function(req, res) {
   });
 });
 
-app.post("/delete" , function(req, res){
+app.post("/delete", function(req, res) {
   const deleted = req.body.deleting;
   console.log(deleted);
-  User.findByIdAndRemove(deleted , function(err){
-    if(!err){
+  User.findByIdAndRemove(deleted, function(err) {
+    if (!err) {
       console.log("successfuly deleting cheked Item");
     }
   });
-   res.redirect("users");
+  res.redirect("users");
 });
 
 
@@ -300,6 +318,7 @@ app.get("/posts/:postId", function(req, res) {
     _id: requestedPostId
   }, function(err, post) {
     res.render("post", {
+      description : post.description,
       title: post.title,
       address: post.address,
       type: post.type,
@@ -331,6 +350,7 @@ function checkNotAuthenticated(req, res, next) {
   }
   next()
 }
+
 
 
 
